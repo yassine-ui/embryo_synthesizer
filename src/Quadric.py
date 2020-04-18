@@ -105,7 +105,6 @@ def PlotEllipsoideSimple(lnume,A,S,pz) :
     # S : coefficients des eéquations pour la sphère anglobante
     # pz : pourcentage entre -& et 1 pour positionner le plan de coupe a une altitude pz*Rayon
 
-
     use_function_callback = False
 
     colors = vtk.vtkNamedColors()

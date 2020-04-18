@@ -25,24 +25,9 @@ class Simulator:
         (RSphere, NbEllipsoides, Ellipsoides) = self.ReadResPacking('solution.txt')
         self.emb = Embryo(RSphere, NbEllipsoides, Ellipsoides)
 
-        sphere = vtk.vtkSphereSource()
-        sphere.SetThetaResolution(100)
-        sphere.SetPhiResolution(50)
-        append_filter = vtk.vtkAppendPolyData()
-        self.emb.append_poly_data(sphere, append_filter)
 
-        clean_filter = vtk.vtkCleanPolyData()
-        clean_filter.SetInputConnection(append_filter.GetOutputPort())
-        clean_filter.Update()
+        self.emb.set_actors(self.renderer)
 
-        # Create a mapper and actor
-        mapper = vtk.vtkPolyDataMapper()
-        mapper.SetInputConnection(clean_filter.GetOutputPort())
-
-        actor = vtk.vtkActor()
-        actor.SetMapper(mapper)
-        actor.GetProperty().SetOpacity(0.3)
-        self.renderer.AddActor(actor)
         self.interactor.Initialize()
         self.renwin.Render()
         self.interactor.Start()
